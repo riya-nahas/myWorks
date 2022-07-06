@@ -8,22 +8,82 @@
 #addTask {
     color: white;
     background-color: rgb(115, 113, 113);
-    margin:0 auto;
-    display:block;
+    margin: 0 auto;
+    display: block;
 }
-.form-group{
+
+.form-group {
     padding: 2px;
     margin: 15px;
 }
 
-#exampleInputDescription{
+#exampleInputDescription {
     padding: 7px;
     height: 100px;
 }
-.form-select{
-    margin: 15px;
-margin-right: 300px;}
-  
-.modal-footer{
+
+.form-select {
+    width: auto;
+}
+
+.modal-footer {
     margin-block-start: 50px;
+}
+
+.cards {
+    padding: 4rem;
+    margin: 10rem;
+}
+
+#current-date{
+    color:green;
+    font-family: 'Trebuchet MS';
+    font-size: large;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    margin: 70px;
+    column-gap: 10px;
+    row-gap: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    text-align: center;
+  }
+
+  #toDoCard {
+    background-color: rgb(219, 88, 116);
+  }
+
+  #inProgressCard {
+    background-color: rgb(43, 122, 196);
+  }
+
+  #reviewCard {
+    background-color: rgb(204, 215, 45);
+  }
+
+  #doneCard {
+    background-color: rgb(165, 66, 161);
+  }
+
+  
+
+/* Error Submit */
+/* .errorStyle {
+    border-width: thick;
+    border-color: red;
+} */
+
+.errorSpan {
+    color: rgb(249, 93, 93);
+}
+
+/* Success Submit */
+.successStyle {
+    border-width: thick;
+    border-color: lightgreen;
+    font-weight: 400;
+    color: rgb(25, 143, 6);
 }

@@ -9,6 +9,7 @@
   <!-- Bootstrap for adding modal-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <!-- Jquery for adding modal-->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -19,6 +20,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
   <!--bootsrap for adding select-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -26,12 +28,14 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <title>Task Manager</title>
+
 </head>
 
 <body>
   <header>
     <div class="siteHeader">
       <h1 id="siteHeader">Task Manager</h1>
+      <span id="current-date"></span>
     </div>
   </header>
 
@@ -44,7 +48,6 @@
       <button id="addTask" type="button" data-toggle="modal" data-target="#exampleModal">
         Add Task
       </button>
-
 
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -59,42 +62,52 @@
             <!--form starts here-->
             <!--form1-->
             <div>
-              <form>
+              <form name="nahas">
                 <div class="form-group">
                   <label for="EnterTaskName">Task Name</label>
-                  <input type="name" class="form-control" id="EnterTaskName" aria-describedby="nameHelp"
-                    placeholder="Enter name">
-
+                  <input name="enterTaskName" type="name" class="form-control" id="EnterTaskName"
+                    aria-describedby="nameHelp" placeholder="Enter name">
+                  <span class="errorSpan" id="taskNameError"></span>
                 </div>
                 <!--form2-->
                 <div class="form-group">
                   <label for="exampleInputDescription">Description</label>
-                  <input type="text" class="form-control" id="exampleInputDescription" placeholder="Description">
+                  <input type="text" class="form-control" id="exampleInputDescription" aria-describedby="description"
+                    placeholder="Description">
+                  <span class="errorSpan" id="taskDescriptionError"></span>
                 </div>
                 <!--form3-->
                 <div class="form-group">
                   <label for="exampleInputAssignedTo">Assigned To:</label>
-                  <input type="password" class="form-control" id="exampleInputAssignedTo" placeholder="assignedTo">
+                  <input type="text" class="form-control" id="exampleInputAssignedTo" placeholder="assignedTo">
+                  <span class="errorSpan" id="taskAssignError"></span>
                 </div>
                 <!--form4-->
                 <div class="form-group">
                   <label for="exampleInputduedate">Due Date</label>
-                  <input type="date" class="form-control" id="exampleInputduedate" placeholder="Priority">
-
+                  <input type="date" class="form-control" id="exampleInputduedate" placeholder="duedate">
+                  <span class="errorSpan" id="dueDateError"></span>
                 </div>
                 <!--form5-->
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>Status</option>
-                  <option value="1">TO DO</option>
-                  <option value="2">In Progress</option>
-                  <option value="3">Review</option>
-                  <option value="3">Done</option>
-                </select>
-                
-
-                <!-- <div class="modal-body">
-              ...
-            </div> -->
+                <div class="form-group">
+                  <label for="taskStatus">Status</label>
+                  <select class="form-select" id="selectStatus" aria-label="Default select example">
+                    <option id="toDo" value="toDo">TO DO</option>
+                    <option id="inProgress" value="inProgress">In Progress</option>
+                    <option id="review" value="review">Review</option>
+                    <option id="done" value="done">Done</option>
+                  </select>
+                </div>
+                <!--form6-->
+                <div class="form-group">
+                  <label for="taskPriority">Priority</label>
+                  <select class="form-select" id="selectPriority" aria-label="Default select example">
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                  </select>
+                </div>
+                <!--modal footer-->
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" id="resetBtn" data-dismiss="modal">Reset</button>
                   <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
@@ -102,9 +115,44 @@
             </div>
           </div>
         </div>
+      </div>
 
+      <!--cards using grid-->
+
+
+
+      <div class="wrapper">
+        <!--toDo card-->
+        <div id="toDoCard">
+          <h5 class="card-title">TO DO</h5>
+          <!--to add the single cards entered-->
+          <div class="single-cards">
+          </div>
+        </div>
+        <!--in Progress card-->
+        <div id="inProgressCard">
+          <h5 class="card-title">IN PROGRESS</h5>
+          <div class="single-cards">
+          </div>
+        </div>
+        <!--review card-->
+        <div id="reviewCard">
+          <h5 class="card-title">REVIEW</h5>
+          <div class="single-cards">
+          </div>
+        </div>
+        <!--done card-->
+        <div id="doneCard">
+          <h5 class="card-title">DONE</h5>
+          <div class="single-cards">
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
-
+  <!--js link-->
+  <script src="./TaskManager.js"></script>
+  <script src="./index.js"></script>
 </body>
 
 </html>
